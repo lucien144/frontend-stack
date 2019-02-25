@@ -36,6 +36,12 @@
     "bootstrap": "^4.3.1",
     "destyle.css": "^1.0.5"
   },
+  "prettier": {
+    "singleQuote": true,
+    "useTabs": true,
+    "semi": true,
+    "tabWidth": 4
+  },
   "stylelint": {
     "extends": "stylelint-config-standard",
     "rules": {
@@ -58,7 +64,6 @@
       "property-no-vendor-prefix": true,
       "value-no-vendor-prefix": true,
       "number-leading-zero": "never",
-      "function-url-quotes": "never",
       "font-family-name-quotes": "always-unless-keyword",
       "comment-whitespace-inside": "always",
       "at-rule-no-vendor-prefix": true,
