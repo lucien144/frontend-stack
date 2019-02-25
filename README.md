@@ -7,6 +7,10 @@ $ npm run dev
 ```
 
 ## Stack
+- [Bootstrap v4 Reboot](https://getbootstrap.com/docs/4.3/content/reboot/)
+- [Bootstrap v4 Grid](https://getbootstrap.com/docs/4.3/layout/grid/)
+- [Bootstrap v4 Utilities](https://getbootstrap.com/docs/4.3/utilities/borders/)
+- [Sanitize CSS](https://github.com/csstools/sanitize.css)
 - Handlebars
 - SASS
 
