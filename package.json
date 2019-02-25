@@ -4,14 +4,18 @@
   "description": "Personal frontend dev-stack based on NPM (and not Gulp/Grunt).",
   "private": true,
   "scripts": {
-    "dev": "concurrently 'npm run html:serve' 'npm run html:watch' 'npm run styles:watch'",
-    "build": "concurrently 'npm run styles:build'",
+    "dev": "concurrently 'npm run html:serve' 'npm run html:watch' 'npm run styles:watch' 'npm run images:watch'",
+    "build": "concurrently 'npm run html:build' 'npm run styles:build' 'npm run images:build'",
     "html": "hbs ./src/html/**/*.hbs --output ./build",
-    "html:serve": "browser-sync build -w",
+    "html:build": "hbs ./src/html/**/*.hbs --output ./dist",
+    "html:serve": "browser-sync build -w --no-open",
     "html:watch": "chokidar ./src/html/**/*.hbs --command 'npm run html'",
     "styles": "node-sass ./src/styles --output ./build",
     "styles:watch": "npm run styles -- --watch",
-    "styles:build": "npm run styles && postcss --use autoprefixer -b 'last 2 versions' < ./build/default.css | postcss --use cssnano > dist/default.min.css"
+    "styles:build": "npm run styles && postcss --use autoprefixer -b 'last 2 versions' < ./build/default.css | postcss --use cssnano > dist/default.min.css",
+    "images": "imagemin ./src/images/**/* --out-dir=./build/images/",
+    "images:build": "imagemin ./src/images/**/* --out-dir=./dist/images/",
+    "images:watch": "chokidar ./src/images/**/* --command 'npm run images && browser-sync reload'"
   },
   "author": "Jan Blasko <honza@lucien144.net>",
   "license": "MIT",
@@ -22,6 +26,7 @@
     "concurrently": "^4.1.0",
     "cssnano": "^4.1.10",
     "hbs-cli": "^1.3.0",
+    "imagemin-cli": "^4.0.0",
     "node-sass": "^4.11.0",
     "postcss": "^7.0.14",
     "postcss-cli": "^6.1.2"
