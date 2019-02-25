@@ -33,6 +33,6 @@
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "sanitize.css": "^8.0.0"
+    "destyle.css": "^1.0.5"
   }
 }
