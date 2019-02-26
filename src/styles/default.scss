@@ -1,2 +1,14 @@
-@import "_vendors";
-@import "_typo";
+@import "variables";
+@import "vendors";
+@import "utilities";
+@import "typo";
+
+@import 'desktop';
+
+@media screen and (max-width: 425px) {
+	@import 'mobile';
+}
+
+@media screen and (min-width: 426px) and (max-width: 1023px) {
+	@import 'tablet';
+}
