@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "concurrently 'npm run html:serve' 'npm run html:watch' 'npm run styles:watch' 'npm run images:watch'",
-    "build": "concurrently 'npm run html:build' 'npm run styles:build' 'npm run images:build'",
+    "build": "npm run cleanup && concurrently 'npm run html:build' 'npm run styles:build' 'npm run images:build'",
+    "cleanup": "rimraf ./dist",
     "html": "html-includes --src ./src/html --dest ./build",
     "html:build": "html-includes --src ./src/html --dest ./dist",
     "html:serve": "browser-sync build -w --no-open",
@@ -30,6 +31,7 @@
     "node-sass": "^4.11.0",
     "postcss": "^7.0.14",
     "postcss-cli": "^6.1.2",
+    "rimraf": "^2.6.3",
     "stylelint-config-standard": "^18.2.0"
   },
   "dependencies": {
@@ -51,9 +53,14 @@
       "color-hex-case": "lower",
       "color-hex-length": "short",
       "color-named": "always-where-possible",
-      "selector-no-qualifying-type": [true, {
-        "ignore": ["attribute"]
-      }],
+      "selector-no-qualifying-type": [
+        true,
+        {
+          "ignore": [
+            "attribute"
+          ]
+        }
+      ],
       "selector-combinator-space-after": "always",
       "selector-attribute-quotes": "always",
       "selector-attribute-operator-space-before": "never",
