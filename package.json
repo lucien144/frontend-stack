@@ -11,7 +11,7 @@
     "html:build": "html-includes --src ./src/html --dest ./dist",
     "html:serve": "browser-sync build -w --no-open",
     "html:watch": "chokidar ./src/html/**/*.html --command 'npm run html'",
-    "styles": "node-sass ./src/styles/default.scss --output ./build",
+    "styles": "dart-sass ./src/styles/default.scss ./build/default.css",
     "styles:watch": "chokidar ./src/styles/**/* --command 'npm run styles'",
     "styles:build": "npm run styles && postcss --use autoprefixer -b 'last 2 versions' < ./build/default.css | postcss --use cssnano > dist/default.min.css",
     "images": "imagemin ./src/images/**/* --out-dir=./build/images/",
@@ -28,7 +28,6 @@
     "cssnano": "^4.1.10",
     "html-includes": "^4.0.1",
     "imagemin-cli": "^4.0.0",
-    "node-sass": "^4.11.0",
     "postcss": "^7.0.14",
     "postcss-cli": "^6.1.2",
     "rimraf": "^2.6.3",
@@ -36,6 +35,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "dart-sass": "^1.25.0",
     "destyle.css": "^1.0.5"
   },
   "prettier": {
