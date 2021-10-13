@@ -4,19 +4,22 @@
   "description": "Personal frontend dev-stack based on NPM (and not Gulp/Grunt).",
   "private": true,
   "scripts": {
-    "dev": "concurrently 'npm run html:serve' 'npm run html:watch' 'npm run styles:watch' 'npm run images:watch'",
-    "build": "npm run cleanup && concurrently 'npm run html:build' 'npm run styles:build' 'npm run images:build'",
-    "cleanup": "rimraf ./dist",
+    "dev": "concurrently 'yarn html:serve' 'yarn html:watch' 'yarn styles:watch' 'yarn images:watch' 'yarn js:watch'",
+    "build": "yarn cleanup && concurrently 'yarn html:build' 'yarn styles:build' 'yarn images:build' 'yarn js:build'",
+    "cleanup": "rimraf ./dist/*",
     "html": "html-includes --src ./src/html --dest ./build",
     "html:build": "html-includes --src ./src/html --dest ./dist",
     "html:serve": "browser-sync build -w --no-open",
-    "html:watch": "chokidar ./src/html/**/*.html --command 'npm run html'",
+    "html:watch": "chokidar ./src/html/**/*.html --command 'yarn html'",
     "styles": "dart-sass ./src/styles/default.scss ./build/default.css",
-    "styles:watch": "chokidar ./src/styles/**/* --command 'npm run styles'",
-    "styles:build": "npm run styles && postcss --use autoprefixer -b 'last 2 versions' < ./build/default.css | postcss --use cssnano > dist/default.min.css",
+    "styles:watch": "chokidar ./src/styles/**/* --command 'yarn styles'",
+    "styles:build": "yarn styles && postcss --use autoprefixer -b 'last 2 versions' < ./build/default.css | postcss --use cssnano > dist/default.css",
     "images": "imagemin ./src/images/**/* --out-dir=./build/images/",
     "images:build": "imagemin ./src/images/**/* --out-dir=./dist/images/",
-    "images:watch": "chokidar ./src/images/**/* --command 'npm run images && browser-sync reload'"
+    "images:watch": "chokidar ./src/images/**/* --command 'yarn images && browser-sync reload'",
+    "js": "tsc",
+    "js:watch": "chokidar ./src/js/**/* --command 'yarn js && browser-sync reload'",
+    "js:build": "yarn js && uglifyjs ./build/index.js --compress --output ./dist/index.js"
   },
   "author": "Jan Blasko <honza@lucien144.net>",
   "license": "MIT",
@@ -26,16 +29,18 @@
     "chokidar-cli": "^1.2.2",
     "concurrently": "^4.1.0",
     "cssnano": "^4.1.10",
+    "dart-sass": "^1.25.0",
     "html-includes": "^4.0.1",
     "imagemin-cli": "^4.0.0",
     "postcss": "^7.0.14",
     "postcss-cli": "^6.1.2",
     "rimraf": "^2.6.3",
-    "stylelint-config-standard": "^18.2.0"
+    "stylelint-config-standard": "^18.2.0",
+    "typescript": "^4.4.3",
+    "uglify-js": "^3.14.2"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "dart-sass": "^1.25.0",
     "destyle.css": "^1.0.5"
   },
   "prettier": {
